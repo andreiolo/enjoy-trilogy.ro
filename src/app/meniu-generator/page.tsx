@@ -225,7 +225,7 @@ interface GeneratedPost {
 }
 
 export default function MenuGenerator() {
-  const [authed, setAuthed] = useState(true);
+  const [authed, setAuthed] = useState(false);
   const [pw, setPw] = useState("");
   const [pwError, setPwError] = useState(false);
   const [activeTab, setActiveTab] = useState<"png" | "pdf" | "menu">("png");
