@@ -61,6 +61,23 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-touch-icon.png",
   },
+  openGraph: {
+    title: "Trilogy · Restaurant & Events · Vulcan",
+    description:
+      "Restaurant Trilogy — The perfect Trilogy of Taste. Mâncare gătită cu pasiune în Valea Jiului.",
+    url: "https://www.enjoytrilogy.ro",
+    siteName: "Restaurant Trilogy",
+    images: [
+      {
+        url: "https://www.enjoytrilogy.ro/icon-512.png",
+        width: 512,
+        height: 512,
+        alt: "Restaurant Trilogy Logo",
+      },
+    ],
+    locale: "ro_RO",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
