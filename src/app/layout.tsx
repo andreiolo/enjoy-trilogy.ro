@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Fraunces, Playfair_Display, Poppins, Great_Vibes } from "next/font/google";
+import { IBM_Plex_Mono, Fraunces, Playfair_Display, Poppins, Great_Vibes, IM_Fell_English_SC, Montserrat } from "next/font/google";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -35,6 +35,20 @@ const greatVibes = Great_Vibes({
   display: "swap",
 });
 
+const imFell = IM_Fell_English_SC({
+  variable: "--font-im-fell",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Trilogy · Restaurant & Events · Vulcan",
   description:
@@ -57,7 +71,7 @@ export default function RootLayout({
   return (
     <html
       lang="ro"
-      className={`${fraunces.variable} ${mono.variable} ${playfair.variable} ${poppins.variable} ${greatVibes.variable}`}
+      className={`${fraunces.variable} ${mono.variable} ${playfair.variable} ${poppins.variable} ${greatVibes.variable} ${imFell.variable} ${montserrat.variable}`}
     >
       <body>{children}</body>
     </html>
