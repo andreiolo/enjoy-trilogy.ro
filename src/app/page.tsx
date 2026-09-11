@@ -120,24 +120,24 @@ function Hero() {
   return (
     <section id="home" className="relative h-dvh min-h-[640px] max-h-[1000px] flex items-center justify-center overflow-hidden">
       <Image src="/images/trilogy-3.jpg" alt="" fill priority sizes="100vw" className="object-cover brightness-[0.32]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-white/80" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-white/80" />
 
       <div className="relative z-10 text-center px-6 w-full max-w-lg mx-auto">
         <div className="w-[80px] h-[80px] md:w-[96px] md:h-[96px] mx-auto mb-7 rounded-full overflow-hidden border-2 border-white/25 shadow-[0_0_40px_rgba(255,255,255,0.06)]">
           <Image src="/images/logo-trilogy.png" alt="Trilogy" width={96} height={96} className="w-full h-full object-cover scale-[1.12]" />
         </div>
 
-        <h1 className="text-[52px] md:text-[72px] lg:text-[88px] font-bold tracking-[-0.01em] text-white leading-[0.95] mb-3 uppercase">
+        <h1 className="text-[52px] md:text-[72px] lg:text-[88px] font-bold tracking-[-0.01em] text-white leading-[0.95] mb-3 uppercase drop-shadow-[0_2px_6px_rgba(0,0,0,0.4)]">
           Trilogy
         </h1>
 
-        <p className="text-[12px] md:text-[14px] tracking-[0.35em] uppercase text-white/60 font-medium mb-6">
+        <p className="text-[12px] md:text-[14px] tracking-[0.35em] uppercase text-white/90 font-medium mb-6 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
           Restaurant & Events
         </p>
 
         <div className="w-10 h-[2px] bg-[var(--color-gold)] mx-auto mb-6" />
 
-        <p className="text-[11px] md:text-[12px] tracking-[0.3em] uppercase text-white/40 mb-10">
+        <p className="text-[11px] md:text-[12px] tracking-[0.3em] uppercase text-white/75 mb-10 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
           Vulcan &middot; Valea Jiului &middot; Din 2019
         </p>
 
@@ -152,7 +152,7 @@ function Hero() {
           href="https://www.google.com/maps?cid=8367969335751616068"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 flex w-fit mx-auto items-center gap-1.5 text-[11px] text-white/45 hover:text-white/75 transition-colors"
+          className="mt-6 flex w-fit mx-auto items-center gap-1.5 text-[11px] text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]"
         >
           <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--color-gold)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26" /></svg>
           4,5 pe Google &middot; 904 recenzii
