@@ -198,10 +198,10 @@ function Divider({ bg = "bg-white" }: { bg?: string }) {
 
 /* ─────────────── FEATURE SECTION ─────────────── */
 function FeatureSection({
-  id, label, title, description, bullets, image, imageAlt, cta, ctaHref, reverse, bg = "bg-white",
+  id, label, title, description, bullets, image, imageAlt, cta, ctaHref, external, reverse, bg = "bg-white",
 }: {
   id: string; label: string; title: string; description: string; bullets?: string[];
-  image: string; imageAlt: string; cta: string; ctaHref: string; reverse?: boolean; bg?: string;
+  image: string; imageAlt: string; cta: string; ctaHref: string; external?: boolean; reverse?: boolean; bg?: string;
 }) {
   return (
     <section id={id} className={`${bg} py-16 md:py-24 lg:py-28`}>
@@ -240,7 +240,7 @@ function FeatureSection({
                 </ul>
               )}
 
-              <a href={ctaHref} className="inline-flex items-center gap-2 text-[13px] text-[#1a1714]/55 hover:text-[var(--color-gold)] font-medium transition-colors duration-300 group self-start">
+              <a href={ctaHref} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="inline-flex items-center gap-2 text-[13px] text-[#1a1714]/55 hover:text-[var(--color-gold)] font-medium transition-colors duration-300 group self-start">
                 {cta}
                 <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className="transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
               </a>
@@ -481,7 +481,7 @@ export default function Home() {
           description="Tu alegi locul — noi venim cu meniul, logistica și atmosfera. De la cine restrânse până la petreceri mai mari, Trilogy Events se ocupă de tot ce înseamnă mâncare, bar și set-up."
           bullets={["Catering complet pentru evenimente private sau corporate", "Bar, veselă, echipamente și detalii de decor, la cerere", "Consultanță pentru meniuri potrivite evenimentului tău"]}
           image="/images/trilogy-4.jpg" imageAlt="Eveniment Trilogy"
-          cta="Contactează-ne" ctaHref="#contact"
+          cta="Contactează-ne pe WhatsApp" ctaHref="https://wa.me/40728385754?text=Bun%C4%83!%20A%C8%99%20vrea%20informa%C8%9Bii%20despre%20organizarea%20unui%20eveniment%20la%20Trilogy." external
         />
 
         <Divider />
