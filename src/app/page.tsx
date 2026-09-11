@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { menuData } from "./menu-data";
 
 const playfair = "var(--font-playfair), 'Playfair Display', serif";
 
@@ -272,28 +273,50 @@ function PhotoBanner() {
   );
 }
 
-/* ─────────────── PROTOTIP: MENU PREVIEW (nu e legat de date reale sincronizate încă) ─────────────── */
-const PROTOTYPE_MENU_ITEMS = [
-  { name: "Pui Crispy Trilogy", weight: "350g", price: "42 lei", desc: "Piept de pui, cartofi prăjiți, sos rose Trilogy, susan alb, fulgi de porumb" },
-  { name: "Coaste porc Trilogy", weight: "750g", price: "65 lei", desc: "Coaste de porc, cartofi prăjiți, salată, sos sweet chilli" },
-  { name: "Burger Trilogy", weight: "360g", price: "48 lei", desc: "Antricot de vită, chiflă, sos rose Trilogy, bacon, brânză cheddar" },
-  { name: "Pizza Trilogy", weight: "600g", price: "45 lei", desc: "Blat Trilogy, mozzarella, sos pizza, cașcaval, șuncă praga, salam" },
-];
+/* ─────────────── FULL MENU ─────────────── */
+const TAG_LABEL: Record<string, string> = { kids: "Copii", vegetarian: "Vegetarian", chef: "Recomandarea bucătarului" };
 
-function MenuPreviewPrototype() {
+function FullMenu() {
+  const [active, setActive] = useState(0);
+  const category = menuData[active];
+
   return (
-    <div className="max-w-2xl mx-auto mb-14 text-left">
-      <p className="text-center text-[10px] tracking-[0.28em] uppercase text-[var(--color-gold)] font-semibold mb-6">Gustul Trilogy</p>
+    <div className="max-w-3xl mx-auto mb-14 text-left">
+      <div className="flex gap-2 overflow-x-auto pb-3 mb-8 -mx-6 px-6 sm:mx-0 sm:px-0 sm:flex-wrap sm:justify-center scrollbar-none">
+        {menuData.map((cat, i) => (
+          <button
+            key={cat.id}
+            onClick={() => setActive(i)}
+            className={`shrink-0 px-4 py-2 rounded-full text-[10.5px] font-bold uppercase tracking-[0.08em] whitespace-nowrap transition-all duration-300 cursor-pointer ${
+              i === active
+                ? "bg-[var(--color-gold)] text-white"
+                : "bg-white text-[#1a1714]/45 border border-black/[0.08] hover:border-[var(--color-gold)]/50 hover:text-[#1a1714]"
+            }`}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="text-center mb-8">
+        <p className="text-[13px] text-[#1a1714]/40 italic max-w-md mx-auto">{category.tagline}</p>
+      </div>
+
       <div className="space-y-6">
-        {PROTOTYPE_MENU_ITEMS.map((item, i) => (
+        {category.items.map((item, i) => (
           <div key={i}>
             <div className="flex items-baseline gap-2">
               <span className="text-[15px] font-bold text-[#1a1714] uppercase tracking-[0.01em]" style={{ fontFamily: playfair }}>{item.name}</span>
-              <span className="text-[11px] text-[#1a1714]/35">{item.weight}</span>
+              {item.weight && <span className="text-[11px] text-[#1a1714]/35">{item.weight}</span>}
+              {item.tags?.map((t) => (
+                <span key={t} title={TAG_LABEL[t]} className="text-[9px] px-1.5 py-0.5 rounded-full border border-[var(--color-gold)]/40 text-[var(--color-gold)] uppercase tracking-wide font-semibold shrink-0">
+                  {t === "kids" ? "Copii" : t === "vegetarian" ? "Veg" : "★ Chef"}
+                </span>
+              ))}
               <span className="flex-1 border-b border-dotted border-black/15 translate-y-[-3px]" />
-              <span className="text-[15px] font-bold text-[var(--color-gold)]">{item.price}</span>
+              <span className="text-[15px] font-bold text-[var(--color-gold)] shrink-0">{item.price} lei</span>
             </div>
-            <p className="text-[12.5px] text-[#1a1714]/40 leading-relaxed mt-1">{item.desc}</p>
+            {item.desc && <p className="text-[12.5px] text-[#1a1714]/40 leading-relaxed mt-1">{item.desc}</p>}
           </div>
         ))}
       </div>
@@ -314,7 +337,7 @@ function MenuSection() {
           <div className="w-10 h-[2px] bg-[var(--color-gold)] mx-auto mb-10" />
         </FadeIn>
         <FadeIn>
-          <MenuPreviewPrototype />
+          <FullMenu />
         </FadeIn>
         <FadeIn className="text-center max-w-lg mx-auto">
           <p className="text-[14px] sm:text-[15px] text-[#1a1714]/45 leading-[1.8] mb-3">

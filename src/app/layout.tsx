@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { IBM_Plex_Mono, Fraunces, Playfair_Display, Poppins, Great_Vibes, IM_Fell_English_SC, Montserrat } from "next/font/google";
+import { menuData } from "./menu-data";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -124,6 +125,27 @@ const restaurantJsonLd = {
   servesCuisine: "Romanian",
   priceRange: "$$",
   menu: "https://www.enjoytrilogy.ro/meniu.pdf",
+  hasMenu: {
+    "@type": "Menu",
+    name: "Meniu Restaurant Trilogy",
+    url: "https://www.enjoytrilogy.ro/meniu.pdf",
+    hasMenuSection: menuData.map((cat) => ({
+      "@type": "MenuSection",
+      name: cat.label,
+      description: cat.tagline,
+      hasMenuItem: cat.items.map((item) => ({
+        "@type": "MenuItem",
+        name: item.name,
+        ...(item.desc ? { description: item.desc } : {}),
+        offers: {
+          "@type": "Offer",
+          price: item.price,
+          priceCurrency: "RON",
+        },
+        ...(item.tags?.includes("vegetarian") ? { suitableForDiet: "https://schema.org/VegetarianDiet" } : {}),
+      })),
+    })),
+  },
   sameAs: [
     "https://www.facebook.com/TrilogyVulcan",
     "https://www.instagram.com/TrilogyVulcan",
