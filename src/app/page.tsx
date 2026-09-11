@@ -611,7 +611,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-2.5">
                   <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className="shrink-0 text-[var(--color-gold)]"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h3.5a1 1 0 0 1 .9.55L22 14v4h-6"/><circle cx="6" cy="18.5" r="1.8"/><circle cx="17.5" cy="18.5" r="1.8"/></svg>
-                  Livrăm între 11:00 – 15:00
+                  Livrăm Luni–Vineri, între 11:00 – 15:00
                 </div>
               </div>
 
