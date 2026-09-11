@@ -274,50 +274,111 @@ function PhotoBanner() {
 }
 
 /* ─────────────── FULL MENU ─────────────── */
+function normalize(s: string) {
+  return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function MenuItemRow({ item, categoryLabel }: { item: (typeof menuData)[number]["items"][number]; categoryLabel?: string }) {
+  return (
+    <div>
+      <div className="flex items-baseline gap-2">
+        <span className="text-[15px] font-bold text-[#1a1714] uppercase tracking-[0.01em]" style={{ fontFamily: playfair }}>{item.name}</span>
+        {item.weight && <span className="text-[11px] text-[#1a1714]/35">{item.weight}</span>}
+        {item.tags?.includes("vegetarian") && (
+          <span title="Vegetarian" className="text-[9px] px-1.5 py-0.5 rounded-full border border-[var(--color-gold)]/40 text-[var(--color-gold)] uppercase tracking-wide font-semibold shrink-0">
+            Veg
+          </span>
+        )}
+        <span className="flex-1 border-b border-dotted border-black/15 translate-y-[-3px]" />
+        <span className="text-[15px] font-bold text-[var(--color-gold)] shrink-0">{item.price} lei</span>
+      </div>
+      {item.desc && <p className="text-[12.5px] text-[#1a1714]/40 leading-relaxed mt-1">{item.desc}</p>}
+      {categoryLabel && <p className="text-[10px] text-[var(--color-gold)]/70 uppercase tracking-wide mt-1">{categoryLabel}</p>}
+    </div>
+  );
+}
+
 function FullMenu() {
   const [active, setActive] = useState(0);
+  const [query, setQuery] = useState("");
   const category = menuData[active];
+  const q = normalize(query.trim());
+
+  const results = q
+    ? menuData.flatMap((cat) =>
+        cat.items
+          .filter((item) => normalize(item.name).includes(q) || normalize(item.desc).includes(q))
+          .map((item) => ({ item, categoryLabel: cat.label }))
+      )
+    : [];
 
   return (
     <div className="max-w-3xl mx-auto mb-14 text-left">
-      <div className="flex gap-2 overflow-x-auto pb-3 mb-8 -mx-6 px-6 sm:mx-0 sm:px-0 sm:flex-wrap sm:justify-center scrollbar-none">
-        {menuData.map((cat, i) => (
-          <button
-            key={cat.id}
-            onClick={() => setActive(i)}
-            className={`shrink-0 px-4 py-2 rounded-full text-[10.5px] font-bold uppercase tracking-[0.08em] whitespace-nowrap transition-all duration-300 cursor-pointer ${
-              i === active
-                ? "bg-[var(--color-gold)] text-white"
-                : "bg-white text-[#1a1714]/45 border border-black/[0.08] hover:border-[var(--color-gold)]/50 hover:text-[#1a1714]"
-            }`}
-          >
-            {cat.label}
-          </button>
-        ))}
-      </div>
+      <div className="sticky top-[72px] lg:top-[80px] z-30 bg-[#f9f7f3] pt-4 -mx-6 px-6 sm:mx-0 sm:px-0">
+        <div className="relative max-w-sm mx-auto mb-4">
+          <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1a1714]/30"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Caută în meniu (ex: somon, pizza, veg)"
+            className="w-full pl-10 pr-9 py-2.5 rounded-full border border-black/[0.08] bg-white text-[13px] text-[#1a1714] placeholder:text-[#1a1714]/30 focus:outline-none focus:border-[var(--color-gold)]/50 transition-colors"
+          />
+          {query && (
+            <button onClick={() => setQuery("")} aria-label="Șterge căutarea" className="absolute right-3 top-1/2 -translate-y-1/2 text-[#1a1714]/30 hover:text-[#1a1714] cursor-pointer">
+              <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+            </button>
+          )}
+        </div>
 
-      <div className="text-center mb-8">
-        <p className="text-[13px] text-[#1a1714]/40 italic max-w-md mx-auto">{category.tagline}</p>
-      </div>
-
-      <div className="space-y-6">
-        {category.items.map((item, i) => (
-          <div key={i}>
-            <div className="flex items-baseline gap-2">
-              <span className="text-[15px] font-bold text-[#1a1714] uppercase tracking-[0.01em]" style={{ fontFamily: playfair }}>{item.name}</span>
-              {item.weight && <span className="text-[11px] text-[#1a1714]/35">{item.weight}</span>}
-              {item.tags?.includes("vegetarian") && (
-                <span title="Vegetarian" className="text-[9px] px-1.5 py-0.5 rounded-full border border-[var(--color-gold)]/40 text-[var(--color-gold)] uppercase tracking-wide font-semibold shrink-0">
-                  Veg
-                </span>
-              )}
-              <span className="flex-1 border-b border-dotted border-black/15 translate-y-[-3px]" />
-              <span className="text-[15px] font-bold text-[var(--color-gold)] shrink-0">{item.price} lei</span>
-            </div>
-            {item.desc && <p className="text-[12.5px] text-[#1a1714]/40 leading-relaxed mt-1">{item.desc}</p>}
+        {!q && (
+          <div className="flex gap-2 overflow-x-auto pb-4 -mx-6 px-6 sm:mx-0 sm:px-0 sm:flex-wrap sm:justify-center scrollbar-none">
+            {menuData.map((cat, i) => (
+              <button
+                key={cat.id}
+                onClick={() => setActive(i)}
+                className={`shrink-0 px-4 py-2 rounded-full text-[10.5px] font-bold uppercase tracking-[0.08em] whitespace-nowrap transition-all duration-300 cursor-pointer ${
+                  i === active
+                    ? "bg-[var(--color-gold)] text-white"
+                    : "bg-white text-[#1a1714]/45 border border-black/[0.08] hover:border-[var(--color-gold)]/50 hover:text-[#1a1714]"
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
           </div>
-        ))}
+        )}
       </div>
+
+      {q ? (
+        <div className="pt-6">
+          <p className="text-center text-[13px] text-[#1a1714]/40 italic mb-8">
+            {results.length > 0 ? `${results.length} rezultate pentru „${query}"` : `Niciun rezultat pentru „${query}"`}
+          </p>
+          <div className="space-y-6">
+            {results.map(({ item, categoryLabel }, i) => (
+              <MenuItemRow key={i} item={item} categoryLabel={categoryLabel} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="pt-6">
+          <div className="text-center mb-8">
+            <p className="text-[13px] text-[#1a1714]/40 italic max-w-md mx-auto">{category.tagline}</p>
+          </div>
+          <div className="space-y-6">
+            {category.items.map((item, i) => (
+              <MenuItemRow key={i} item={item} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      <p className="text-center text-[11px] text-[#1a1714]/30 leading-relaxed mt-10 pt-6 border-t border-black/[0.06]">
+        Pentru informații complete despre alergeni, descarcă{" "}
+        <a href="/meniu.pdf" target="_blank" className="text-[var(--color-gold)] hover:underline">meniul în format PDF</a>
+        {" "}sau întreabă ospătarul.
+      </p>
     </div>
   );
 }
