@@ -169,8 +169,8 @@ function Hero() {
 /* ─────────────── 3 CARDS ─────────────── */
 function CardsSection() {
   const cards = [
-    { href: "#restaurant", image: "/images/trilogy-3.jpg", title: "Restaurant", desc: "Mâncare gătită cu pasiune, într-un ambient cald.", cta: "Descoperă" },
-    { href: "#menu",       image: "/images/trilogy-2.jpg", title: "Meniu",      desc: "Preparate simple, bine făcute. Gusturi autentice.", cta: "Vezi meniul" },
+    { href: "#menu",       image: "/images/trilogy-3.jpg", title: "Restaurant", desc: "Mâncare gătită cu pasiune, într-un ambient cald.", cta: "Vezi meniul" },
+    { href: "#box",        image: "/images/trilogy-2.jpg", title: "Meniul Zilei", desc: "Trilogy Box — mâncare caldă, gata de livrare.", cta: "Vezi Trilogy Box" },
     { href: "#events",     image: "/images/trilogy-4.jpg", title: "Evenimente", desc: "Cadrul perfect pentru ocazii care contează.",       cta: "Vezi detalii" },
   ];
 
