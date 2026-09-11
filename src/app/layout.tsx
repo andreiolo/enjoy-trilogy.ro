@@ -97,7 +97,13 @@ const restaurantJsonLd = {
     streetAddress: "Mihai Viteazu nr. 26, Bl. 18, Parter",
     addressLocality: "Vulcan",
     addressRegion: "Hunedoara",
+    postalCode: "336200",
     addressCountry: "RO",
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.5",
+    reviewCount: "904",
   },
   openingHoursSpecification: [
     {

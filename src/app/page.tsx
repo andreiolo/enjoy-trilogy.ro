@@ -146,6 +146,16 @@ function Hero() {
         >
           Rezervă o masă
         </a>
+
+        <a
+          href="https://www.google.com/maps?cid=8367969335751616068"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 flex w-fit mx-auto items-center gap-1.5 text-[11px] text-white/45 hover:text-white/75 transition-colors"
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--color-gold)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26" /></svg>
+          4,5 pe Google &middot; 904 recenzii
+        </a>
       </div>
 
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/25 animate-bounce">
@@ -470,7 +480,7 @@ export default function Home() {
           id="box" label="Trilogy Box · Always Ready"
           title="Mâncare caldă, gata de livrare."
           description="Gătim zilnic, porționăm, ambalăm și încărcăm în cutiile Trilogy. Când suni, mâncarea este deja pregătită — doar urcă în mașină și pornește spre tine."
-          bullets={["Porții gătite zilnic în funcție de cerere", "Caserole gândite să mențină căldura și textura", "Livrare rapidă în oraș, fără așteptare"]}
+          bullets={["Porții gătite zilnic în funcție de cerere", "Caserole gândite să mențină căldura și textura", "Livrare Luni–Vineri, în Vulcan și Petroșani"]}
           image="/images/trilogy-2.jpg" imageAlt="Trilogy Box"
           cta="Comandă acum" ctaHref="tel:+40728385754" reverse bg="bg-[#f9f7f3]"
         />
