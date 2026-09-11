@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { IBM_Plex_Mono, Fraunces, Playfair_Display, Poppins, Great_Vibes, IM_Fell_English_SC, Montserrat } from "next/font/google";
 import "./globals.css";
 
@@ -80,6 +81,46 @@ export const metadata: Metadata = {
   },
 };
 
+const restaurantJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  name: "Restaurant Trilogy",
+  image: "https://www.enjoytrilogy.ro/icon-512.png",
+  url: "https://www.enjoytrilogy.ro",
+  telephone: "+40728385754",
+  email: "enjoy.trilogy@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Mihai Viteazu nr. 26, Bl. 18, Parter",
+    addressLocality: "Vulcan",
+    addressRegion: "Hunedoara",
+    addressCountry: "RO",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      opens: "09:30",
+      closes: "22:00",
+    },
+  ],
+  servesCuisine: "Romanian",
+  priceRange: "$$",
+  menu: "https://www.enjoytrilogy.ro/meniu.pdf",
+  sameAs: [
+    "https://www.facebook.com/TrilogyVulcan",
+    "https://www.instagram.com/TrilogyVulcan",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -90,7 +131,16 @@ export default function RootLayout({
       lang="ro"
       className={`${fraunces.variable} ${mono.variable} ${playfair.variable} ${poppins.variable} ${greatVibes.variable} ${imFell.variable} ${montserrat.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(restaurantJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

@@ -1,3 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /dl-Z6TcSg1Wp-n49oj9/
+Disallow: /meniu-generator
+
+Sitemap: https://www.enjoytrilogy.ro/sitemap.xml
