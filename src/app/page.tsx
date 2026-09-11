@@ -209,10 +209,10 @@ function Divider({ bg = "bg-white" }: { bg?: string }) {
 
 /* ─────────────── FEATURE SECTION ─────────────── */
 function FeatureSection({
-  id, label, title, description, bullets, image, imageAlt, cta, ctaHref, external, reverse, bg = "bg-white",
+  id, label, title, description, bullets, image, imageAlt, cta, ctaHref, external, reverse, bg = "bg-white", footer,
 }: {
   id: string; label: string; title: string; description: string; bullets?: string[];
-  image: string; imageAlt: string; cta: string; ctaHref: string; external?: boolean; reverse?: boolean; bg?: string;
+  image: string; imageAlt: string; cta?: string; ctaHref?: string; external?: boolean; reverse?: boolean; bg?: string; footer?: React.ReactNode;
 }) {
   return (
     <section id={id} className={`${bg} py-16 md:py-24 lg:py-28`}>
@@ -251,10 +251,12 @@ function FeatureSection({
                 </ul>
               )}
 
-              <a href={ctaHref} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="inline-flex items-center gap-2 text-[13px] text-[#1a1714]/55 hover:text-[var(--color-gold)] font-medium transition-colors duration-300 group self-start">
-                {cta}
-                <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className="transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-              </a>
+              {footer ? footer : cta && ctaHref && (
+                <a href={ctaHref} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="inline-flex items-center gap-2 text-[13px] text-[#1a1714]/55 hover:text-[var(--color-gold)] font-medium transition-colors duration-300 group self-start">
+                  {cta}
+                  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className="transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                </a>
+              )}
             </div>
           </div>
         </FadeIn>
@@ -593,9 +595,53 @@ export default function Home() {
           id="box" label="Trilogy Box · Always Ready"
           title="Mâncare caldă, gata de livrare."
           description="Gătim zilnic, porționăm, ambalăm și încărcăm în cutiile Trilogy. Când suni, mâncarea este deja pregătită — doar urcă în mașină și pornește spre tine."
-          bullets={["Porții gătite zilnic în funcție de cerere", "Caserole gândite să mențină căldura și textura", "Livrare Luni–Vineri, în Vulcan și Petroșani"]}
+          bullets={["Porții gătite zilnic în funcție de cerere", "Caserole gândite să mențină căldura și textura"]}
           image="/images/trilogy-2.jpg" imageAlt="Trilogy Box"
-          cta="Comandă acum" ctaHref="tel:+40728385754" reverse bg="bg-[#f9f7f3]"
+          reverse bg="bg-[#f9f7f3]"
+          footer={
+            <div>
+              <div className="space-y-2 mb-5 text-[13px] text-[#1a1714]/55">
+                <div className="flex items-center gap-2.5">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className="shrink-0 text-[var(--color-gold)]"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  Comenzi telefonic sau pe WhatsApp
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className="shrink-0 text-[var(--color-gold)]"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Preluăm comenzile de la 09:30
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className="shrink-0 text-[var(--color-gold)]"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h3.5a1 1 0 0 1 .9.55L22 14v4h-6"/><circle cx="6" cy="18.5" r="1.8"/><circle cx="17.5" cy="18.5" r="1.8"/></svg>
+                  Livrăm între 11:00 – 15:00
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                {[
+                  { city: "Vulcan", phone: "0728382305" },
+                  { city: "Petroșani", phone: "0728382304" },
+                ].map((z) => (
+                  <div key={z.city} className="flex items-center gap-3 px-4 py-3 rounded-xl border border-black/[0.08] bg-white">
+                    <div>
+                      <div className="text-[10px] uppercase tracking-wide text-[#1a1714]/40 mb-0.5">{z.city}</div>
+                      <a href={`tel:+40${z.phone.replace(/^0/, "")}`} className="text-[14px] font-bold text-[#1a1714] hover:text-[var(--color-gold)] transition-colors">
+                        {z.phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1 $2 $3")}
+                      </a>
+                    </div>
+                    <a
+                      href={`https://wa.me/40${z.phone.replace(/^0/, "")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`WhatsApp ${z.city}`}
+                      title={`WhatsApp ${z.city}`}
+                      className="ml-auto w-8 h-8 rounded-full flex items-center justify-center border border-black/[0.08] text-[#1a1714]/40 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] transition-colors shrink-0"
+                    >
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.3.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5.2.5.7 1.8.8 1.9.1.1.1.3 0 .5-.1.2-.1.3-.3.5l-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.6-.7c.2-.3.4-.2.6-.1l1.7.8c.2.1.3.2.4.3.1.2.1.9-.2 1.6z"/></svg>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          }
         />
 
         <FeatureSection
