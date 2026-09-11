@@ -272,6 +272,35 @@ function PhotoBanner() {
   );
 }
 
+/* ─────────────── PROTOTIP: MENU PREVIEW (nu e legat de date reale sincronizate încă) ─────────────── */
+const PROTOTYPE_MENU_ITEMS = [
+  { name: "Pui Crispy Trilogy", weight: "350g", price: "42 lei", desc: "Piept de pui, cartofi prăjiți, sos rose Trilogy, susan alb, fulgi de porumb" },
+  { name: "Coaste porc Trilogy", weight: "750g", price: "65 lei", desc: "Coaste de porc, cartofi prăjiți, salată, sos sweet chilli" },
+  { name: "Burger Trilogy", weight: "360g", price: "48 lei", desc: "Antricot de vită, chiflă, sos rose Trilogy, bacon, brânză cheddar" },
+  { name: "Pizza Trilogy", weight: "600g", price: "45 lei", desc: "Blat Trilogy, mozzarella, sos pizza, cașcaval, șuncă praga, salam" },
+];
+
+function MenuPreviewPrototype() {
+  return (
+    <div className="max-w-2xl mx-auto mb-14 text-left">
+      <p className="text-center text-[10px] tracking-[0.28em] uppercase text-[var(--color-gold)] font-semibold mb-6">Gustul Trilogy</p>
+      <div className="space-y-6">
+        {PROTOTYPE_MENU_ITEMS.map((item, i) => (
+          <div key={i}>
+            <div className="flex items-baseline gap-2">
+              <span className="text-[15px] font-bold text-[#1a1714] uppercase tracking-[0.01em]" style={{ fontFamily: playfair }}>{item.name}</span>
+              <span className="text-[11px] text-[#1a1714]/35">{item.weight}</span>
+              <span className="flex-1 border-b border-dotted border-black/15 translate-y-[-3px]" />
+              <span className="text-[15px] font-bold text-[var(--color-gold)]">{item.price}</span>
+            </div>
+            <p className="text-[12.5px] text-[#1a1714]/40 leading-relaxed mt-1">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ─────────────── MENU CTA ─────────────── */
 function MenuSection() {
   return (
@@ -282,7 +311,12 @@ function MenuSection() {
           <h2 className="text-[26px] sm:text-[30px] md:text-[36px] font-bold text-[#1a1714] uppercase tracking-[0.02em] mb-4" style={{ fontFamily: playfair }}>
             Meniu
           </h2>
-          <div className="w-10 h-[2px] bg-[var(--color-gold)] mx-auto mb-6" />
+          <div className="w-10 h-[2px] bg-[var(--color-gold)] mx-auto mb-10" />
+        </FadeIn>
+        <FadeIn>
+          <MenuPreviewPrototype />
+        </FadeIn>
+        <FadeIn className="text-center max-w-lg mx-auto">
           <p className="text-[14px] sm:text-[15px] text-[#1a1714]/45 leading-[1.8] mb-3">
             Verifici meniul zilei, ne suni, iar noi îți pregătim comanda la pachet.
           </p>
