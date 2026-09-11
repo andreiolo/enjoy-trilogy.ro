@@ -55,6 +55,9 @@ export const metadata: Metadata = {
   description:
     "Restaurant Trilogy — The perfect Trilogy of Taste. Mâncare gătită cu pasiune în Valea Jiului.",
   robots: { index: true, follow: true },
+  verification: {
+    google: "-FKXaGH91lqEWhRU3zgiiIw4EoPAXokwE5N3OPojtf0",
+  },
   icons: {
     icon: [
       { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
