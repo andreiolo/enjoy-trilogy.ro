@@ -274,8 +274,6 @@ function PhotoBanner() {
 }
 
 /* ─────────────── FULL MENU ─────────────── */
-const TAG_LABEL: Record<string, string> = { kids: "Copii", vegetarian: "Vegetarian", chef: "Recomandarea bucătarului" };
-
 function FullMenu() {
   const [active, setActive] = useState(0);
   const category = menuData[active];
@@ -308,11 +306,11 @@ function FullMenu() {
             <div className="flex items-baseline gap-2">
               <span className="text-[15px] font-bold text-[#1a1714] uppercase tracking-[0.01em]" style={{ fontFamily: playfair }}>{item.name}</span>
               {item.weight && <span className="text-[11px] text-[#1a1714]/35">{item.weight}</span>}
-              {item.tags?.map((t) => (
-                <span key={t} title={TAG_LABEL[t]} className="text-[9px] px-1.5 py-0.5 rounded-full border border-[var(--color-gold)]/40 text-[var(--color-gold)] uppercase tracking-wide font-semibold shrink-0">
-                  {t === "kids" ? "Copii" : t === "vegetarian" ? "Veg" : "★ Chef"}
+              {item.tags?.includes("vegetarian") && (
+                <span title="Vegetarian" className="text-[9px] px-1.5 py-0.5 rounded-full border border-[var(--color-gold)]/40 text-[var(--color-gold)] uppercase tracking-wide font-semibold shrink-0">
+                  Veg
                 </span>
-              ))}
+              )}
               <span className="flex-1 border-b border-dotted border-black/15 translate-y-[-3px]" />
               <span className="text-[15px] font-bold text-[var(--color-gold)] shrink-0">{item.price} lei</span>
             </div>
@@ -340,11 +338,8 @@ function MenuSection() {
           <FullMenu />
         </FadeIn>
         <FadeIn className="text-center max-w-lg mx-auto">
-          <p className="text-[14px] sm:text-[15px] text-[#1a1714]/45 leading-[1.8] mb-3">
-            Verifici meniul zilei, ne suni, iar noi îți pregătim comanda la pachet.
-          </p>
           <p className="text-[14px] sm:text-[15px] text-[#1a1714]/45 leading-[1.8] mb-10">
-            Sună la{" "}
+            Comanzi la pachet, cu ridicare personală. Sună la{" "}
             <a href="tel:+40728385754" className="text-[var(--color-gold)] font-semibold hover:underline">0728 385 754</a>
           </p>
           <a
@@ -353,7 +348,7 @@ function MenuSection() {
             className="inline-flex items-center gap-3 px-9 py-3.5 bg-[var(--color-gold)] text-white text-[11px] font-bold tracking-[0.16em] uppercase rounded-full hover:bg-[#b8913f] transition-all duration-300 shadow-[0_4px_16px_rgba(201,160,80,0.2)]"
           >
             <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>
-            Vezi Meniul Complet
+            Vezi meniul complet în PDF
           </a>
         </FadeIn>
       </div>
