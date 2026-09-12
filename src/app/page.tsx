@@ -209,10 +209,10 @@ function Divider({ bg = "bg-white" }: { bg?: string }) {
 
 /* ─────────────── FEATURE SECTION ─────────────── */
 function FeatureSection({
-  id, label, title, description, bullets, image, imageAlt, cta, ctaHref, external, reverse, bg = "bg-white", footer,
+  id, label, title, description, bullets, image, imageAlt, cta, ctaHref, external, reverse, bg = "bg-white", footer, media,
 }: {
   id: string; label: string; title: string; description: string; bullets?: string[];
-  image: string; imageAlt: string; cta?: string; ctaHref?: string; external?: boolean; reverse?: boolean; bg?: string; footer?: React.ReactNode;
+  image?: string; imageAlt?: string; cta?: string; ctaHref?: string; external?: boolean; reverse?: boolean; bg?: string; footer?: React.ReactNode; media?: React.ReactNode;
 }) {
   return (
     <section id={id} className={`${bg} py-16 md:py-24 lg:py-28`}>
@@ -221,9 +221,11 @@ function FeatureSection({
           <div className={`grid lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-20 items-center`}>
             {/* Image */}
             <div className={reverse ? "lg:order-2" : ""}>
-              <div className="rounded-2xl overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.08)] border border-black/[0.04]">
-                <Image src={image} alt={imageAlt} width={640} height={480} className="w-full h-[280px] sm:h-[340px] md:h-[400px] lg:h-[460px] object-cover" />
-              </div>
+              {media ? media : (
+                <div className="rounded-2xl overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.08)] border border-black/[0.04]">
+                  <Image src={image!} alt={imageAlt!} width={640} height={480} className="w-full h-[280px] sm:h-[340px] md:h-[400px] lg:h-[460px] object-cover" />
+                </div>
+              )}
             </div>
 
             {/* Text */}
@@ -266,13 +268,7 @@ function FeatureSection({
 }
 
 /* ─────────────── EVENTS GALLERY ─────────────── */
-function EventsGallery() {
-  const photos = [
-    "/images/event-gallery-1.jpg",
-    "/images/event-gallery-2.jpg",
-    "/images/event-gallery-3.jpg",
-    "/images/event-gallery-4.jpg",
-  ];
+function Slideshow({ photos, altPrefix, className = "h-[280px] sm:h-[340px] md:h-[400px] lg:h-[460px]" }: { photos: string[]; altPrefix: string; className?: string }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -283,6 +279,49 @@ function EventsGallery() {
   }, [paused, photos.length]);
 
   return (
+    <div
+      className={`relative w-full ${className} rounded-2xl overflow-hidden border border-black/[0.05] shadow-[0_10px_36px_rgba(0,0,0,0.08)]`}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {photos.map((src, i) => (
+        <div key={i} className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${i === active ? "opacity-100 z-10" : "opacity-0 z-0"}`}>
+          <Image
+            src={src}
+            alt={`${altPrefix} ${i + 1}`}
+            fill
+            sizes="(min-width:1024px) 672px, 100vw"
+            priority={i === 0}
+            className={`object-cover ${i === active ? "kenburns animate-[kenburns_6s_ease-out_forwards]" : ""}`}
+          />
+        </div>
+      ))}
+
+      <div className="absolute bottom-4 inset-x-0 z-20 flex justify-center gap-2">
+        {photos.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setActive(i)}
+            aria-label={`Vezi poza ${i + 1}`}
+            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+              i === active ? "w-6 bg-[var(--color-gold)]" : "w-2 bg-white/70 hover:bg-white"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function EventsGallery() {
+  const photos = [
+    "/images/event-gallery-1.jpg",
+    "/images/event-gallery-2.jpg",
+    "/images/event-gallery-3.jpg",
+    "/images/event-gallery-4.jpg",
+  ];
+
+  return (
     <section className="bg-white pb-16 md:pb-24 lg:pb-28">
       <div className={wrap}>
         <FadeIn>
@@ -290,36 +329,8 @@ function EventsGallery() {
           <h3 className="text-center text-[22px] sm:text-[26px] font-bold text-[#1a1714] uppercase tracking-[0.02em] mb-8" style={{ fontFamily: playfair }}>
             Momente de la evenimentele noastre
           </h3>
-          <div
-            className="relative max-w-2xl mx-auto h-[380px] sm:h-[440px] lg:h-[500px] rounded-2xl overflow-hidden border border-black/[0.05] shadow-[0_10px_36px_rgba(0,0,0,0.08)]"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
-          >
-            {photos.map((src, i) => (
-              <div key={i} className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${i === active ? "opacity-100 z-10" : "opacity-0 z-0"}`}>
-                <Image
-                  src={src}
-                  alt={`Eveniment Trilogy ${i + 1}`}
-                  fill
-                  sizes="(min-width:1024px) 672px, 100vw"
-                  priority={i === 0}
-                  className={`object-cover ${i === active ? "kenburns animate-[kenburns_6s_ease-out_forwards]" : ""}`}
-                />
-              </div>
-            ))}
-
-            <div className="absolute bottom-4 inset-x-0 z-20 flex justify-center gap-2">
-              {photos.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActive(i)}
-                  aria-label={`Vezi poza ${i + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    i === active ? "w-6 bg-[var(--color-gold)]" : "w-2 bg-white/70 hover:bg-white"
-                  }`}
-                />
-              ))}
-            </div>
+          <div className="max-w-2xl mx-auto">
+            <Slideshow photos={photos} altPrefix="Eveniment Trilogy" className="h-[380px] sm:h-[440px] lg:h-[500px]" />
           </div>
         </FadeIn>
       </div>
@@ -658,7 +669,12 @@ export default function Home() {
           title="Mâncare caldă, gata de livrare."
           description="Gătim zilnic, porționăm, ambalăm și încărcăm în cutiile Trilogy. Când suni, mâncarea este deja pregătită — doar urcă în mașină și pornește spre tine."
           bullets={["Porții gătite zilnic în funcție de cerere", "Caserole gândite să mențină căldura și textura"]}
-          image="/images/trilogy-2.jpg" imageAlt="Trilogy Box"
+          media={
+            <Slideshow
+              photos={["/images/box-gallery-1.jpg", "/images/box-gallery-2.jpg", "/images/box-gallery-3.jpg", "/images/box-gallery-4.jpg"]}
+              altPrefix="Trilogy Box"
+            />
+          }
           reverse bg="bg-[#f9f7f3]"
           footer={
             <div>
