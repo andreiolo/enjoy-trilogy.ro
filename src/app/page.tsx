@@ -151,26 +151,22 @@ function HeroBackground() {
 
 function Hero() {
   return (
-    <section id="home" className="relative h-[85dvh] min-h-[560px] sm:h-dvh sm:min-h-[640px] max-h-[1000px] flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-[480px] h-[62vh] sm:h-[68vh] max-h-[680px] flex items-center justify-center overflow-hidden">
       <HeroBackground />
       <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-white/85" />
 
       <div className="relative z-10 text-center px-6 w-full max-w-lg mx-auto">
-        <div className="w-[80px] h-[80px] md:w-[96px] md:h-[96px] mx-auto mb-7 rounded-full overflow-hidden border-2 border-white/25 shadow-[0_0_40px_rgba(255,255,255,0.06)]">
-          <Image src="/images/logo-trilogy.png" alt="Trilogy" width={96} height={96} className="w-full h-full object-cover scale-[1.12]" />
+        <div className="w-[110px] h-[110px] md:w-[132px] md:h-[132px] mx-auto mb-6 rounded-full overflow-hidden border-2 border-white/30 shadow-[0_4px_30px_rgba(0,0,0,0.25)]">
+          <Image src="/images/logo-trilogy.png" alt="Restaurant Trilogy" width={132} height={132} className="w-full h-full object-cover scale-[1.12]" />
         </div>
 
-        <h1 className="text-[52px] md:text-[72px] lg:text-[88px] font-bold tracking-[-0.01em] text-white leading-[0.95] mb-3 uppercase drop-shadow-[0_2px_6px_rgba(0,0,0,0.4)]">
-          Trilogy
-        </h1>
-
-        <p className="text-[13px] md:text-[15px] tracking-[0.08em] text-white/90 font-medium mb-6 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)] italic" style={{ fontFamily: playfair }}>
+        <h1 className="text-[19px] sm:text-[24px] md:text-[28px] font-semibold italic text-white leading-[1.3] mb-6 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]" style={{ fontFamily: playfair }}>
           Mâncare gătită cu pasiune, în Valea Jiului
-        </p>
+        </h1>
 
         <div className="w-10 h-[2px] bg-[var(--color-gold)] mx-auto mb-6" />
 
-        <p className="text-[11px] md:text-[12px] tracking-[0.3em] uppercase text-white/75 mb-10 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+        <p className="text-[11px] md:text-[12px] tracking-[0.3em] uppercase text-white/75 mb-8 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
           Vulcan &middot; Valea Jiului &middot; Din 2019
         </p>
 
