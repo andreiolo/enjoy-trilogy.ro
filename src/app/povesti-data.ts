@@ -1,6 +1,7 @@
 export type ArticleSection = {
   heading: string;
   paragraphs: string[];
+  image?: { src: string; alt: string };
 };
 
 export type Source = { label: string; url: string };
@@ -83,6 +84,55 @@ export const povestiData: Article[] = [
       { label: "Drumuri închise iarna în Hunedoara — adevarul.ro", url: "https://adevarul.ro/stil-de-viata/calatorii/judetul-unde-27-de-drumuri-raman-inchise-iarna-2401975.html" },
       { label: "Câmpu lui Neag — descoperimromania.ro", url: "https://www.descoperimromania.ro/campu-lui-neag/" },
       { label: "Acces Parcul Național Retezat — retezat.ro", url: "https://www.retezat.ro/puncte-acces-in-parc" },
+    ],
+  },
+  {
+    slug: "povestea-pasului-valcan-batalii-si-momarlani",
+    title: "Povestea Pasului Vâlcan: bătălii și Momârlani",
+    excerpt:
+      "Ce s-a întâmplat în octombrie 1916 la Pasul Vâlcan, cine sunt Momârlanii care trăiesc de secole la poalele acestor munți, și ce e Colindul Pițărăilor.",
+    coverImage: "/images/povesti-panteon.jpg",
+    publishedDate: "2026-09-12",
+    intro:
+      "Pasul Vâlcan nu e doar o trecătoare cu peisaj frumos. E și un loc unde s-a scris, la propriu, o pagină din istoria Primului Război Mondial, și poarta către lumea Momârlanilor, comunitatea care trăiește de secole la poalele acestor munți.",
+    sections: [
+      {
+        heading: "Bătălia de la Pasul Vâlcan, octombrie 1916",
+        paragraphs: [
+          "Între 23 și 29 octombrie 1916, trupele române au oprit aici încercarea Armatei 9 germane, comandată de generalul Erich von Falkenhayn, de a forța Munții Carpați spre Valea Jiului. De partea română, generalul Ioan Dragalina (care a preluat comanda de la generalul Ioan Culcer chiar în timpul luptelor, pe 25 octombrie) a condus Diviziile 11 și 1 Infanterie, cu 17 batalioane, 2 escadroane de cavalerie și 15 baterii de artilerie. De cealaltă parte, Divizia 11 Infanterie Bavareză, Divizia 6 Cavalerie Germană și o brigadă austriacă, sprijinite de 22 de baterii de artilerie.",
+          "Pe 24 octombrie, germanii au reușit inițial să spargă apărarea română, dar contraatacurile lui Dragalina i-au respins înapoi peste graniță în doar trei zile. Trecătoarea a rămas în mâinile românilor în această fază a luptelor.",
+        ],
+      },
+      {
+        heading: "Panteonul Eroilor de la cota 1621",
+        paragraphs: [
+          "Chiar pe linia frontului din 1916, la cota 1621 din Pasul Vâlcan, a fost ridicat un Panteon al Eroilor. Aici sunt cinstiți cei peste 1.500 de soldați căzuți în zona Straja–Pasul Vâlcan, între august și octombrie 1916. Tranșeele din acea vară și toamnă sunt încă vizibile în zonă, atât de bine păstrate încât au blocat, decenii mai târziu, chiar și un proiect de modernizare a șoselei de munte.",
+        ],
+      },
+      {
+        heading: "Momârlanii, oamenii dintotdeauna ai muntelui",
+        image: { src: "/images/povesti-pitarai.jpg", alt: "Sat de munte iarna, în zorii dimineții de Ajun, Valea Jiului" },
+        paragraphs: [
+          "Dincolo de istoria militară, Pasul Vâlcan e și pragul spre lumea Momârlanilor, o comunitate de aproximativ 10.000 de oameni care trăiește în Valea Jiului. Originea lor exactă rămâne dezbătută între istorici, unii îi consideră urmași direcți ai populației dacice din zonă, alții văd în ei comunități medievale adaptate de mult timp vieții de munte. Cert e că sunt cei dintâi locuitori ai așezărilor montane din zonă, cu ocupații legate de creșterea animalelor și agricultură, și cu un port tradițional propriu, purtat cu mândrie și azi la sărbători.",
+        ],
+      },
+      {
+        heading: "Colindul Pițărăilor",
+        paragraphs: [
+          "Cea mai cunoscută tradiție a lor e Colindul Pițărăilor, în dimineața de Ajun. Comunitatea îmbrăcată în port tradițional momârlănesc pornește pe ulițe, în frunte cu flăcăi neînsurați care duc steaguri mari, împodobite, urmați de fluierași, femei și copii. Sunt considerați primii vestitori ai Nașterii Domnului, iar obiceiul se păstrează cel mai bine în satele din partea de est a Văii Jiului, cum e Jiețul.",
+        ],
+      },
+    ],
+    closing:
+      "Și azi, de sărbători, comunitățile din jurul Vulcanului se adună la fel cum o făceau străbunii lor: cu voie bună, cu tradiție, și cu o masă caldă la final. Dacă vreți să simțiți ceva din atmosfera asta, Restaurant Trilogy e locul unde se termină firesc o zi de sărbătoare sau de drumeție pe aceste meleaguri.",
+    sources: [
+      { label: "Prima bătălie de pe Valea Jiului (1916) — Wikipedia", url: "https://ro.wikipedia.org/wiki/Prima_b%C4%83t%C4%83lie_de_pe_Valea_Jiului_(1916)" },
+      { label: "Eroii Primului Război Mondial omagiați în Pasul Vâlcan — adevarul.ro", url: "https://adevarul.ro/stiri-locale/hunedoara/eroii-din-primul-razboi-mondial-sunt-omagiati-in-1886426.html" },
+      { label: "Noua șosea blocată de tranșeele din Primul Război Mondial — adevarul.ro", url: "https://adevarul.ro/stiri-locale/hunedoara/noua-sosea-din-munti-s-a-blocat-intr-un-loc-1888306.html" },
+      { label: "Momârlanii, urmașii dacilor din Valea Jiului — descopera.ro", url: "https://www.descopera.ro/descopera-in-romania/10144259-momarlanii-urmasii-dacilor-din-valea-jiului" },
+      { label: "Momârlani — Wikipedia", url: "https://ro.wikipedia.org/wiki/Mom%C3%A2rlani" },
+      { label: "Pițărăii din Valea Jiului — ziare.com", url: "https://ziare.com/social/craciun/pitaraii-din-valea-jiului-primii-vestitori-ai-nasterii-domnului-1064453" },
+      { label: "Colindul Pițărăilor — povestea-locurilor.ro", url: "http://povestea-locurilor.ro/2018/11/12/colindul-pitarailor/" },
     ],
   },
 ];

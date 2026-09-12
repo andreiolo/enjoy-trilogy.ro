@@ -71,6 +71,11 @@ export default async function PoveasteArticle({ params }: { params: Promise<{ sl
             <div className="space-y-9">
               {article.sections.map((s, i) => (
                 <div key={i}>
+                  {s.image && (
+                    <div className="relative w-full h-[200px] sm:h-[280px] rounded-2xl overflow-hidden border border-black/[0.05] mb-5">
+                      <Image src={s.image.src} alt={s.image.alt} fill sizes="(min-width:1024px) 672px, 100vw" className="object-cover" />
+                    </div>
+                  )}
                   <h2 className="text-[18px] sm:text-[20px] font-bold text-[#1a1714] mb-3" style={{ fontFamily: playfair }}>
                     {s.heading}
                   </h2>
