@@ -116,57 +116,23 @@ function Header() {
 }
 
 /* ─────────────── HERO ─────────────── */
-const HERO_PHOTOS = [
-  "/images/event-gallery-1.jpg",
-  "/images/event-gallery-2.jpg",
-  "/images/event-gallery-3.jpg",
-  "/images/event-gallery-4.jpg",
-];
-
-function HeroBackground() {
-  const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    const t = setInterval(() => setActive((a) => (a + 1) % HERO_PHOTOS.length), 5000);
-    return () => clearInterval(t);
-  }, []);
-
-  return (
-    <>
-      {HERO_PHOTOS.map((src, i) => (
-        <div key={i} className={`absolute inset-0 transition-opacity duration-[1500ms] ease-in-out ${i === active ? "opacity-100 z-10" : "opacity-0 z-0"}`}>
-          <Image
-            src={src}
-            alt=""
-            fill
-            priority={i === 0}
-            sizes="100vw"
-            className={`object-cover brightness-[0.8] ${i === active ? "kenburns animate-[kenburns_8s_ease-out_forwards]" : ""}`}
-          />
-        </div>
-      ))}
-    </>
-  );
-}
-
 function Hero() {
   return (
-    <section id="home" className="relative min-h-[480px] h-[62vh] sm:h-[68vh] max-h-[680px] flex items-center justify-center overflow-hidden">
-      <HeroBackground />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-white/85" />
+    <section id="home" className="relative bg-[#0e0e0e] py-16 sm:py-20 overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(201,160,80,0.14),transparent_60%)]" />
 
       <div className="relative z-10 text-center px-6 w-full max-w-lg mx-auto">
-        <div className="w-[110px] h-[110px] md:w-[132px] md:h-[132px] mx-auto mb-6 rounded-full overflow-hidden border-2 border-white/30 shadow-[0_4px_30px_rgba(0,0,0,0.25)]">
+        <div className="w-[110px] h-[110px] md:w-[132px] md:h-[132px] mx-auto mb-6 rounded-full overflow-hidden border-2 border-[var(--color-gold)]/40 shadow-[0_4px_30px_rgba(201,160,80,0.15)]">
           <Image src="/images/logo-trilogy.png" alt="Restaurant Trilogy" width={132} height={132} className="w-full h-full object-cover scale-[1.12]" />
         </div>
 
-        <h1 className="text-[19px] sm:text-[24px] md:text-[28px] font-semibold italic text-white leading-[1.3] mb-6 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]" style={{ fontFamily: playfair }}>
+        <h1 className="text-[19px] sm:text-[24px] md:text-[28px] font-semibold italic text-white leading-[1.3] mb-6" style={{ fontFamily: playfair }}>
           Mâncare gătită cu pasiune, în Valea Jiului
         </h1>
 
         <div className="w-10 h-[2px] bg-[var(--color-gold)] mx-auto mb-6" />
 
-        <p className="text-[11px] md:text-[12px] tracking-[0.3em] uppercase text-white/75 mb-8 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+        <p className="text-[11px] md:text-[12px] tracking-[0.3em] uppercase text-white/60 mb-8">
           Vulcan &middot; Valea Jiului &middot; Din 2019
         </p>
 
@@ -181,15 +147,11 @@ function Hero() {
           href="https://www.google.com/maps?cid=8367969335751616068"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 flex w-fit mx-auto items-center gap-1.5 text-[11px] text-white/80 hover:text-white transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]"
+          className="mt-6 flex w-fit mx-auto items-center gap-1.5 text-[11px] text-white/60 hover:text-white transition-colors"
         >
           <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--color-gold)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26" /></svg>
           4,5 pe Google &middot; 904 recenzii
         </a>
-      </div>
-
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/25 animate-bounce">
-        <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" /></svg>
       </div>
     </section>
   );
