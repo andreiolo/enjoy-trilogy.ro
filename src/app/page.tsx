@@ -273,6 +273,14 @@ function EventsGallery() {
     "/images/event-gallery-3.jpg",
     "/images/event-gallery-4.jpg",
   ];
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => setActive((a) => (a + 1) % photos.length), 5000);
+    return () => clearInterval(t);
+  }, [paused, photos.length]);
 
   return (
     <section className="bg-white pb-16 md:pb-24 lg:pb-28">
@@ -282,12 +290,36 @@ function EventsGallery() {
           <h3 className="text-center text-[22px] sm:text-[26px] font-bold text-[#1a1714] uppercase tracking-[0.02em] mb-8" style={{ fontFamily: playfair }}>
             Momente de la evenimentele noastre
           </h3>
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 -mx-6 px-6 sm:mx-0 sm:px-0 scrollbar-none">
+          <div
+            className="relative max-w-2xl mx-auto h-[380px] sm:h-[440px] lg:h-[500px] rounded-2xl overflow-hidden border border-black/[0.05] shadow-[0_10px_36px_rgba(0,0,0,0.08)]"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
             {photos.map((src, i) => (
-              <div key={i} className="relative shrink-0 snap-start w-[240px] sm:w-[280px] lg:w-[300px] h-[340px] sm:h-[380px] rounded-2xl overflow-hidden border border-black/[0.05]">
-                <Image src={src} alt={`Eveniment Trilogy ${i + 1}`} fill sizes="300px" className="object-cover" />
+              <div key={i} className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${i === active ? "opacity-100 z-10" : "opacity-0 z-0"}`}>
+                <Image
+                  src={src}
+                  alt={`Eveniment Trilogy ${i + 1}`}
+                  fill
+                  sizes="(min-width:1024px) 672px, 100vw"
+                  priority={i === 0}
+                  className={`object-cover ${i === active ? "kenburns animate-[kenburns_6s_ease-out_forwards]" : ""}`}
+                />
               </div>
             ))}
+
+            <div className="absolute bottom-4 inset-x-0 z-20 flex justify-center gap-2">
+              {photos.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActive(i)}
+                  aria-label={`Vezi poza ${i + 1}`}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    i === active ? "w-6 bg-[var(--color-gold)]" : "w-2 bg-white/70 hover:bg-white"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </FadeIn>
       </div>
