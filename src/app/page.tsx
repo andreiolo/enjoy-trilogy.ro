@@ -183,11 +183,11 @@ function CardsSection() {
               <a key={i} href={c.href} className="group relative block rounded-2xl overflow-hidden border border-black/[0.05] hover:shadow-[0_10px_36px_rgba(0,0,0,0.1)] transition-all duration-500">
                 <div className="relative h-[340px] sm:h-[380px] lg:h-[440px] overflow-hidden">
                   <Image src={c.image} alt={c.title} fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
                 </div>
                 <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7 text-center flex flex-col items-center">
-                  <h3 className="text-[20px] sm:text-[24px] font-bold text-white uppercase tracking-[0.06em] mb-1.5">{c.title}</h3>
-                  <p className="text-[13px] text-white/65 mb-5 leading-relaxed max-w-[240px]">{c.desc}</p>
+                  <h3 className="text-[20px] sm:text-[24px] font-bold text-white uppercase tracking-[0.06em] mb-1.5 drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)]">{c.title}</h3>
+                  <p className="text-[13px] text-white/90 mb-5 leading-relaxed max-w-[240px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">{c.desc}</p>
                   <span className="inline-flex items-center gap-2 px-5 py-2 border border-white/25 text-white text-[10px] tracking-[0.14em] uppercase font-semibold rounded-full group-hover:bg-white group-hover:text-[#1a1714] transition-all duration-300">
                     {c.cta}
                     <svg width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" /></svg>
