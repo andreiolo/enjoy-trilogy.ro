@@ -116,11 +116,44 @@ function Header() {
 }
 
 /* ─────────────── HERO ─────────────── */
+const HERO_PHOTOS = [
+  "/images/event-gallery-1.jpg",
+  "/images/event-gallery-2.jpg",
+  "/images/event-gallery-3.jpg",
+  "/images/event-gallery-4.jpg",
+];
+
+function HeroBackground() {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setActive((a) => (a + 1) % HERO_PHOTOS.length), 5000);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <>
+      {HERO_PHOTOS.map((src, i) => (
+        <div key={i} className={`absolute inset-0 transition-opacity duration-[1500ms] ease-in-out ${i === active ? "opacity-100 z-10" : "opacity-0 z-0"}`}>
+          <Image
+            src={src}
+            alt=""
+            fill
+            priority={i === 0}
+            sizes="100vw"
+            className={`object-cover brightness-[0.8] ${i === active ? "kenburns animate-[kenburns_8s_ease-out_forwards]" : ""}`}
+          />
+        </div>
+      ))}
+    </>
+  );
+}
+
 function Hero() {
   return (
-    <section id="home" className="relative h-dvh min-h-[640px] max-h-[1000px] flex items-center justify-center overflow-hidden">
-      <Image src="/images/trilogy-3.jpg" alt="" fill priority sizes="100vw" className="object-cover brightness-[0.32]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-white/80" />
+    <section id="home" className="relative h-[85dvh] min-h-[560px] sm:h-dvh sm:min-h-[640px] max-h-[1000px] flex items-center justify-center overflow-hidden">
+      <HeroBackground />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-white/85" />
 
       <div className="relative z-10 text-center px-6 w-full max-w-lg mx-auto">
         <div className="w-[80px] h-[80px] md:w-[96px] md:h-[96px] mx-auto mb-7 rounded-full overflow-hidden border-2 border-white/25 shadow-[0_0_40px_rgba(255,255,255,0.06)]">
@@ -131,8 +164,8 @@ function Hero() {
           Trilogy
         </h1>
 
-        <p className="text-[12px] md:text-[14px] tracking-[0.35em] uppercase text-white/90 font-medium mb-6 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
-          Restaurant & Events
+        <p className="text-[13px] md:text-[15px] tracking-[0.08em] text-white/90 font-medium mb-6 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)] italic" style={{ fontFamily: playfair }}>
+          Mâncare gătită cu pasiune, în Valea Jiului
         </p>
 
         <div className="w-10 h-[2px] bg-[var(--color-gold)] mx-auto mb-6" />
