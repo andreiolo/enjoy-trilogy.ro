@@ -91,7 +91,7 @@ export const povestiData: Article[] = [
     title: "Povestea Pasului Vâlcan: bătălii și Momârlani",
     excerpt:
       "Ce s-a întâmplat în octombrie 1916 la Pasul Vâlcan, cine sunt Momârlanii care trăiesc de secole la poalele acestor munți, și ce e Colindul Pițărăilor.",
-    coverImage: "/images/povesti-panteon.jpg",
+    coverImage: "/images/povesti-pitarai.jpg",
     publishedDate: "2026-09-12",
     intro:
       "Pasul Vâlcan nu e doar o trecătoare cu peisaj frumos. E și un loc unde s-a scris, la propriu, o pagină din istoria Primului Război Mondial, și poarta către lumea Momârlanilor, comunitatea care trăiește de secole la poalele acestor munți.",
@@ -105,13 +105,13 @@ export const povestiData: Article[] = [
       },
       {
         heading: "Panteonul Eroilor de la cota 1621",
+        image: { src: "/images/povesti-panteon.jpg", alt: "Cruce comemorativă de piatră într-o poiană de munte, toamna" },
         paragraphs: [
           "Chiar pe linia frontului din 1916, la cota 1621 din Pasul Vâlcan, a fost ridicat un Panteon al Eroilor. Aici sunt cinstiți cei peste 1.500 de soldați căzuți în zona Straja–Pasul Vâlcan, între august și octombrie 1916. Tranșeele din acea vară și toamnă sunt încă vizibile în zonă, atât de bine păstrate încât au blocat, decenii mai târziu, chiar și un proiect de modernizare a șoselei de munte.",
         ],
       },
       {
         heading: "Momârlanii, oamenii dintotdeauna ai muntelui",
-        image: { src: "/images/povesti-pitarai.jpg", alt: "Sat de munte iarna, în zorii dimineții de Ajun, Valea Jiului" },
         paragraphs: [
           "Dincolo de istoria militară, Pasul Vâlcan e și pragul spre lumea Momârlanilor, o comunitate de aproximativ 10.000 de oameni care trăiește în Valea Jiului. Originea lor exactă rămâne dezbătută între istorici, unii îi consideră urmași direcți ai populației dacice din zonă, alții văd în ei comunități medievale adaptate de mult timp vieții de munte. Cert e că sunt cei dintâi locuitori ai așezărilor montane din zonă, cu ocupații legate de creșterea animalelor și agricultură, și cu un port tradițional propriu, purtat cu mândrie și azi la sărbători.",
         ],
@@ -133,6 +133,58 @@ export const povestiData: Article[] = [
       { label: "Momârlani — Wikipedia", url: "https://ro.wikipedia.org/wiki/Mom%C3%A2rlani" },
       { label: "Pițărăii din Valea Jiului — ziare.com", url: "https://ziare.com/social/craciun/pitaraii-din-valea-jiului-primii-vestitori-ai-nasterii-domnului-1064453" },
       { label: "Colindul Pițărăilor — povestea-locurilor.ro", url: "http://povestea-locurilor.ro/2018/11/12/colindul-pitarailor/" },
+    ],
+  },
+  {
+    slug: "ghid-vulcan-ce-poti-face",
+    title: "Ghid Vulcan: ce poți face în oraș și în jurul lui",
+    excerpt:
+      "De la istoria minieră și bisericile din centru, la cinci poteci tematice scurte chiar la marginea orașului — tot ce merită văzut fără să pleci departe.",
+    coverImage: "/images/povesti-cascada.jpg",
+    publishedDate: "2026-09-12",
+    intro:
+      "Vulcanul nu e doar punctul de plecare spre trecători și munți. Are propria istorie, câteva biserici vechi în centru, și, chiar la marginea orașului, cinci poteci tematice scurte, mult mai accesibile decât drumețiile de o zi întreagă din munți.",
+    sections: [
+      {
+        heading: "De la sat minier la oraș",
+        paragraphs: [
+          "Povestea Vulcanului începe la mijlocul secolului XIX, când s-au deschis primele exploatări miniere din Valea Jiului. Perioada 1866-1870 a fost una de înflorire, iar orașul a crescut rapid, ajungând la 5.000-6.000 de locuitori la începutul secolului XX.",
+          "În anii '80, Vulcanul avea aproape 30.000 de locuitori, majoritatea lucrând în mină. După 1990, închiderea exploatărilor a dus la un declin accentuat, resimțit și azi în aspectul orașului.",
+        ],
+      },
+      {
+        heading: "Bisericile din centru",
+        paragraphs: [
+          "În centrul orașului găsești Biserica Ortodoxă \"Sfântul Nicolae\", cu valoare istorică. Nu departe, Biserica Romano-Catolică \"Adormirea Maicii Domnului\", construită în 1910-1911 după planurile arhitecților Biró Ernő și Giacinto Puttini.",
+          "A treia, Biserica Ortodoxă \"Duminica Orbului\" (cunoscută și ca Vulcan II), își are originea într-o comunitate venită din Țara Hațegului la sfârșitul secolului XVIII, prima biserică de lemn fiind ridicată în 1791.",
+        ],
+      },
+      {
+        heading: "Poteci scurte, chiar la marginea orașului",
+        paragraphs: [
+          "Dacă nu ai o zi întreagă pentru munte, în jurul Vulcanului sunt marcate cinci poteci tematice, toate accesibile fără echipament special.",
+          "Cetatea Ascunsă (dificultate medie, 6,5 km, aproximativ 3 ore dus-întors): pereți stâncoși care amintesc de zidurile unei cetăți, buni și pentru alpiniști.",
+          "Traseul Tunelelor (ușor spre mediu, 6 km, 3-4 ore): Peștera Dracului, Cascada Dracului, izvoarele Pârâului Baleia și construcții hidrotehnice abandonate.",
+          "Drumul Lupilor (dificultate medie, 6,5 km): cascade pe pârâul Morișoara, Cascada de la Trecătoarea Lupilor, și două curiozități, Statuia Amerindianului din Carpați și Titanul de pe Valea Morii.",
+          "Traseul Ruinelor (dificultate medie, 12 km): Mănăstirea Sfântul Nicolae, schitul din Poiana Muntelui, Cascada Ungurului și formațiunea numită \"Sfinxul din Valea Ungurului\".",
+          "Cascada Lupilor (traseu ușor, 30-60 minute): o cascadă de 10 metri, accesibilă în orice sezon.",
+        ],
+      },
+      {
+        heading: "O curiozitate: Buzduganul din Pasul Vulcan",
+        paragraphs: [
+          "Dincolo de istoria minieră și de luptele din Primul Război Mondial (despre care am scris separat), Pasul Vulcan păstrează și o urmă mult mai veche. În 1896 a fost ridicat aici un monument, \"Buzduganul\", în memoria nobililor Kendeffy (Cândea), aliați apropiați ai lui Iancu de Hunedoara în luptele cu otomanii de la mijlocul secolului XV.",
+        ],
+      },
+    ],
+    closing:
+      "Fie că ai ales o biserică, o cascadă sau doar o plimbare prin centru, o zi în Vulcan se termină bine cu o masă caldă. Restaurant Trilogy e la doar câțiva pași distanță, indiferent din ce parte a orașului vii.",
+    sources: [
+      { label: "Cinci poteci turistice tematice — GO Hunedoara", url: "https://www.gohunedoara.com/en/cinci-poteci-turistice-tematice-ce-strabat-locuri-de-poveste-deschise-in-zona-vulcan/" },
+      { label: "Povestea orașului Vulcan și a exploatărilor miniere — romania-misterioasa.ro", url: "https://romania-misterioasa.ro/povestea-orasului-vulcan-si-a-exploatarilor-miniere/" },
+      { label: "Vulcan — Marele centru minier — historia.ro", url: "https://historia.ro/sectiune/actualitate/vulcan-marele-centru-minier-din-romania-2275585.html" },
+      { label: "Biserica Vulcan II — crestinortodox.ro", url: "https://www.crestinortodox.ro/biserici-manastiri/biserica-vulcan-ii-67936.html" },
+      { label: "Buzduganul lui Ioan de Hunedoara — ziarulnatiunea.ro", url: "https://ziarulnatiunea.ro/2023/11/23/buzduganul-lui-ioan-de-hunedoara-se-ridica-din-nou-in-portile-de-fier-ale-transilvaniei-ca-reper-istoric-si-cultural/" },
     ],
   },
 ];
