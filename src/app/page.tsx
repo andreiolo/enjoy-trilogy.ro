@@ -265,6 +265,36 @@ function FeatureSection({
   );
 }
 
+/* ─────────────── EVENTS GALLERY ─────────────── */
+function EventsGallery() {
+  const photos = [
+    "/images/event-gallery-1.jpg",
+    "/images/event-gallery-2.jpg",
+    "/images/event-gallery-3.jpg",
+    "/images/event-gallery-4.jpg",
+  ];
+
+  return (
+    <section className="bg-white pb-16 md:pb-24 lg:pb-28">
+      <div className={wrap}>
+        <FadeIn>
+          <p className="text-center text-[10px] tracking-[0.28em] uppercase text-[var(--color-gold)] font-semibold mb-4">Trilogy Events</p>
+          <h3 className="text-center text-[22px] sm:text-[26px] font-bold text-[#1a1714] uppercase tracking-[0.02em] mb-8" style={{ fontFamily: playfair }}>
+            Momente de la evenimentele noastre
+          </h3>
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 -mx-6 px-6 sm:mx-0 sm:px-0 scrollbar-none">
+            {photos.map((src, i) => (
+              <div key={i} className="relative shrink-0 snap-start w-[240px] sm:w-[280px] lg:w-[300px] h-[340px] sm:h-[380px] rounded-2xl overflow-hidden border border-black/[0.05]">
+                <Image src={src} alt={`Eveniment Trilogy ${i + 1}`} fill sizes="300px" className="object-cover" />
+              </div>
+            ))}
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
 /* ─────────────── PHOTO BANNER ─────────────── */
 function PhotoBanner() {
   return (
@@ -652,6 +682,8 @@ export default function Home() {
           image="/images/trilogy-4.jpg" imageAlt="Eveniment Trilogy"
           cta="Contactează-ne pe WhatsApp" ctaHref="https://wa.me/40728385754?text=Bun%C4%83!%20A%C8%99%20vrea%20informa%C8%9Bii%20despre%20organizarea%20unui%20eveniment%20la%20Trilogy." external
         />
+
+        <EventsGallery />
 
         <Divider />
         <MenuSection />
