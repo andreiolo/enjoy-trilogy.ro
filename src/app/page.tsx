@@ -733,6 +733,30 @@ export default function Home() {
 
         <EventsGallery />
 
+        <FeatureSection
+          id="live-cooking" label="Trilogy Events"
+          title="Live Cooking Show."
+          description="Bucătarii noștri gătesc live, chiar în fața invitaților — friptură la jar, flambé și tot spectacolul focului. Un moment de show care rămâne în memoria oaspeților, parte din orice eveniment Trilogy."
+          bullets={["Grătar și flambé pregătite live, în fața invitaților", "Perfect pentru evenimente private sau corporate", "Se integrează în orice meniu de catering Trilogy Events"]}
+          media={
+            <div className="grid grid-cols-2 gap-3 h-[420px] sm:h-[480px] lg:h-[520px]">
+              <div className="relative rounded-2xl overflow-hidden border border-black/[0.05] shadow-[0_6px_32px_rgba(0,0,0,0.08)]">
+                <video src="/videos/live-cooking.mp4" autoPlay muted loop playsInline className="w-full h-full object-cover" />
+              </div>
+              <div className="grid grid-rows-2 gap-3">
+                <div className="relative rounded-2xl overflow-hidden border border-black/[0.05] shadow-[0_6px_32px_rgba(0,0,0,0.08)]">
+                  <Image src="/images/live-cooking-1.jpg" alt="Live Cooking Trilogy" fill sizes="(min-width:1024px) 320px, 50vw" className="object-cover" />
+                </div>
+                <div className="relative rounded-2xl overflow-hidden border border-black/[0.05] shadow-[0_6px_32px_rgba(0,0,0,0.08)]">
+                  <Image src="/images/live-cooking-2.jpg" alt="Live Cooking Trilogy, flambé la foc" fill sizes="(min-width:1024px) 320px, 50vw" className="object-cover" />
+                </div>
+              </div>
+            </div>
+          }
+          reverse
+          cta="Contactează-ne pe WhatsApp" ctaHref="https://wa.me/40728385754?text=Bun%C4%83!%20A%C8%99%20vrea%20informa%C8%9Bii%20despre%20Live%20Cooking%20Show%20la%20un%20eveniment." external
+        />
+
         <Divider />
         <MenuSection />
         <ContactSection />
