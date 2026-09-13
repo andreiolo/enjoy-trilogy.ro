@@ -148,7 +148,7 @@ const restaurantJsonLd = {
   },
   sameAs: [
     "https://www.facebook.com/TrilogyVulcan",
-    "https://www.instagram.com/TrilogyVulcan",
+    "https://www.instagram.com/enjoy.trilogy/",
   ],
 };
 
