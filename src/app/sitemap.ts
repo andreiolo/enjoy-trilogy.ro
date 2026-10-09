@@ -15,6 +15,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.7,
     },
+    {
+      url: "https://www.enjoytrilogy.ro/valori-nutritionale",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
     ...povestiData.map((a) => ({
       url: `https://www.enjoytrilogy.ro/povesti-din-vale/${a.slug}`,
       lastModified: new Date(a.publishedDate),
