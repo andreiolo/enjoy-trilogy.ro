@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { playfair } from "../components/SiteChrome";
 import type { NutritionCategory, Nutrients } from "../nutrition-data";
 
@@ -26,9 +26,17 @@ const ROWS: [keyof Nutrients, string, boolean?][] = [
 ];
 
 export default function NutritionBrowser({ categories }: { categories: NutritionCategory[] }) {
-  const [mode, setMode] = useState<"portion" | "per100">("portion");
+  const [mode, setMode] = useState<"portion" | "per100">("per100");
   const [query, setQuery] = useState("");
   const q = normalize(query.trim());
+
+  // Link-urile din codurile QR (#pizza, #paste…) trebuie să sară la categorie și după hidratare
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id) return;
+    const t = setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "instant" }), 50);
+    return () => clearTimeout(t);
+  }, []);
 
   const visible = q
     ? categories
@@ -39,8 +47,8 @@ export default function NutritionBrowser({ categories }: { categories: Nutrition
   return (
     <div className="max-w-3xl mx-auto">
       <div className="sticky top-[72px] lg:top-[80px] z-30 bg-[#f9f7f3] pt-4 -mx-6 px-6 sm:mx-0 sm:px-0">
-        <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-center mb-4">
-          <div className="relative flex-1 max-w-sm sm:mx-0 mx-auto w-full">
+        <div className="flex justify-center mb-4">
+          <div className="relative max-w-sm w-full">
             <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#1a1714]/30"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
             <input
               type="text"
@@ -55,20 +63,6 @@ export default function NutritionBrowser({ categories }: { categories: Nutrition
               </button>
             )}
           </div>
-          <div role="group" aria-label="Unitate" className="flex self-center rounded-full border border-black/[0.08] bg-white p-1 shrink-0">
-            {([["portion", "Per porție"], ["per100", "Per 100 g"]] as const).map(([value, label]) => (
-              <button
-                key={value}
-                onClick={() => setMode(value)}
-                aria-pressed={mode === value}
-                className={`px-4 py-1.5 rounded-full text-[10.5px] font-bold uppercase tracking-[0.08em] transition-all duration-300 cursor-pointer ${
-                  mode === value ? "bg-[var(--color-gold)] text-white" : "text-[#1a1714]/45 hover:text-[#1a1714]"
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
         </div>
 
         {!q && (
@@ -77,6 +71,11 @@ export default function NutritionBrowser({ categories }: { categories: Nutrition
               <a
                 key={cat.id}
                 href={`#${cat.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById(cat.id)?.scrollIntoView({ behavior: "instant" });
+                  history.replaceState(null, "", `#${cat.id}`);
+                }}
                 className="shrink-0 px-4 py-2 rounded-full text-[10.5px] font-bold uppercase tracking-[0.08em] whitespace-nowrap bg-white text-[#1a1714]/45 border border-black/[0.08] hover:border-[var(--color-gold)]/50 hover:text-[#1a1714] transition-all duration-300"
               >
                 {cat.label}
@@ -115,7 +114,7 @@ export default function NutritionBrowser({ categories }: { categories: Nutrition
                       </div>
                       <div className="text-right shrink-0">
                         <div className="text-[17px] font-bold text-[var(--color-gold)] leading-none">~{nf0.format(n.kcal)} kcal</div>
-                        <div className="text-[10px] text-[#1a1714]/35 mt-1">{nf0.format(n.kj)} kJ</div>
+                        <div className="text-[10px] text-[#1a1714]/35 mt-1">{nf0.format(n.kj)} kJ · {mode === "portion" ? "per porție" : "per 100 g"}</div>
                       </div>
                     </div>
                     <dl className="grid grid-cols-2 sm:grid-cols-6 gap-x-4 gap-y-2 border-t border-black/[0.05] pt-3">
@@ -133,6 +132,16 @@ export default function NutritionBrowser({ categories }: { categories: Nutrition
           </section>
         ))}
       </div>
+
+      <p className="text-center text-[11px] text-[#1a1714]/35 mt-12">
+        {mode === "per100" ? "Valorile sunt afișate per 100 g." : "Valorile sunt afișate per porție."}{" "}
+        <button
+          onClick={() => setMode(mode === "per100" ? "portion" : "per100")}
+          className="underline underline-offset-2 hover:text-[#1a1714]/60 cursor-pointer"
+        >
+          {mode === "per100" ? "Vezi per porție" : "Vezi per 100 g"}
+        </button>
+      </p>
     </div>
   );
 }
